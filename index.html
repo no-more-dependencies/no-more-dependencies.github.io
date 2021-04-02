@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>No More Dependencies elements</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js" integrity="sha512-YBk7HhgDZvBxmtOfUdvX0z8IH2d10Hp3aEygaMNhtF8fSOvBZ16D/1bXZTJV6ndk/L/DlXxYStP8jrF77v2MIg==" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css" integrity="sha512-vswe+cgvic/XBoF1OcM/TeJ2FW0OofqAVdCZiEYkd6dwGXthvkSFWOoGGJgS2CW70VK5dQM5Oh+7ne47s74VTg==" crossorigin="anonymous" />
+	<script src="https://unpkg.com/nmd-flash"></script>
+	<script src="https://unpkg.com/nmd-modal"></script>
+	<script src="https://unpkg.com/nmd-select"></script>
+	<script src="https://unpkg.com/nmd-collapse"></script>
+	<script>
+		async function run(event){
+			eval(`(async () => {${event.target.previousElementSibling.firstElementChild.innerText}})()`);
+		}
+	</script>
+	<style>
+		body {
+			margin-bottom: 50vh;
+		}
+
+		h1, h2 {
+			margin-top: 2em;
+			margin-bottom: .5em;
+		}
+
+		.join-with-next {
+			margin-bottom: 0 !important;
+		}
+
+		.join-with-next + * {
+			width: 100%;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	</style>
+</head>
+<body>
+	<nmd-flash-container></nmd-flash-container>
+	<nmd-modal-container hidden></nmd-modal-container>
+	<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">No More Dependencies</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="#nmd-flash">nmd-flash</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#nmd-modal">nmd-modal</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#nmd-select">nmd-select</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#nmd-collapse">nmd-collapse</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container mt-3">
+		<h1>No More Dependencies</h1>
+
+		<p>Small web components with minimal or no aditional dependencies.</p>
+		<p>Here are some quick demonstrations.</p>
+
+
+		<h2>
+			<a id="nmd-flash"></a>
+			nmd-flash
+			<a href="https://www.npmjs.com/package/nmd-flash" target="_blank">
+				<img src="https://img.shields.io/npm/v/nmd-flash?style=for-the-badge" alt="npm">
+			</a>
+		</h2>
+
+		<p>Web component for displaying styled and animated messages.</p>
+
+		<pre><code class="language-markup"><script type="prism-html-markup"><script src="https://unpkg.com/nmd-flash"></script></code></pre>
+
+		<pre class="join-with-next"><code class="language-markup"><script type="prism-html-markup"><nmd-flash-container>
+	<nmd-flash type="success">
+		Everything is awesome.
+	</nmd-flash>
+	<nmd-flash type="fail">
+		Something is wong.
+	</nmd-flash>
+	<nmd-flash type="warning">
+		Mind the gap.
+	</nmd-flash>
+	<nmd-flash type="info">
+		Roses are red.
+	</nmd-flash>
+	<nmd-flash><!-- defaults to info -->
+		Violets are blue.
+	</nmd-flash>
+	<nmd-flash auto-dismiss="1000">
+		I will be gone in 1 second. Oh no!
+	</nmd-flash>
+</nmd-flash-container></script></code></pre>
+		<button type="button" class="btn btn-primary" 
+			onclick="document.querySelector('nmd-flash-container').innerHTML='<nmd-flash-container><nmd-flash type=\'success\'>Everything is awesome.</nmd-flash><nmd-flash type=\'fail\'>Something is wong.</nmd-flash><nmd-flash type=\'warning\'>Mind the gap.</nmd-flash><nmd-flash type=\'info\'>Roses are red.</nmd-flash><nmd-flash>Violets are blue.</nmd-flash><nmd-flash auto-dismiss=\'1000\'>I will be gone in 1 second. Oh no!</nmd-flash></nmd-flash-container>'">
+			Run
+		</button>
+
+		<pre class="join-with-next"><code class="language-js">NmdFlash.add("Hi!");</code></pre>
+		<button type="button" class="btn btn-primary" onclick="run(event)">Run</button>
+
+		<pre class="join-with-next"><code class="language-js">NmdFlash.add(
+	"This was a <strong>triumph</strong>.", // message
+	"success", // type
+	1000, // autodismiss
+	true // message contains HTML tags
+);</code></pre>
+		<button type="button" class="btn btn-primary" onclick="run(event)">Run</button>
+
+		<pre class="join-with-next"><code class="language-js">let msg = document.querySelector("nmd-flash");
+msg.type = "warning";
+msg.messageText = "Nevermind, I'm a warning now.";
+msg.dismiss();</code></pre>
+		<button type="button" class="btn btn-primary" onclick="run(event)">Run</button>
+
+
+		<h2>
+			<a id="nmd-modal"></a>
+			nmd-modal
+			<a href="https://www.npmjs.com/package/nmd-modal" target="_blank">
+				<img src="https://img.shields.io/npm/v/nmd-modal?style=for-the-badge" alt="npm">
+			</a>
+		</h2>
+
+		<p>Web component for modal dialog windows.</p>
+
+		<pre><code class="language-markup"><script type="prism-html-markup"><script src="https://unpkg.com/nmd-modal"></script></code></pre>
+
+		<p>Put this somewhere:</p>
+		<pre><code class="language-markup"><script type="prism-html-markup"><nmd-modal-container hidden></nmd-modal-container></script></code></pre>
+
+		<p>Localize your buttons:</p>
+		<pre><code class="language-markup"><script type="prism-html-markup"><nmd-modal-container hidden label-ok="Budiž" label-cancel="Storno"></nmd-modal-container></script></code></pre>
+
+		<p>These return Promise:</p>
+		<pre class="join-with-next"><code class="language-js">NmdModal.alert("Hello there!");</code></pre>
+		<button type="button" class="btn btn-primary" onclick="run(event)">Run</button>
+
+		<pre class="join-with-next"><code class="language-js">NmdModal.alert("#$@&%*!", "fail");</code></pre>
+		<button type="button" class="btn btn-primary" onclick="run(event)">Run</button>
+
+		<pre class="join-with-next"><code class="language-js">let response = await NmdModal.prompt("Who's there?", "light");
+if(response)
+	NmdModal.alert(`${response} who?`, "dark");</code></pre>
+		<button type="button" class="btn btn-primary" onclick="run(event)">Run</button>
+
+
+		<h2>
+			<a id="nmd-select"></a>
+			nmd-select
+			<a href="https://www.npmjs.com/package/nmd-select" target="_blank">
+				<img src="https://img.shields.io/npm/v/nmd-select?style=for-the-badge" alt="npm">
+			</a>
+		</h2>
+
+		<p>Searchable select web compoment with vanilla look and feel.</p>
+
+		<pre><code class="language-markup"><script type="prism-html-markup"><script src="https://unpkg.com/nmd-select"></script></code></pre>
+
+		<pre class="join-with-next"><code class="language-markup"><script type="prism-html-markup"><nmd-select>
+	<optgroup label="Local COOP">
+		<option value="408410">X-Morph: Defense</option>
+		<option value="448510">Overcooked</option>
+	</optgroup>
+	<optgroup label="Network COOP">
+		<option value="548430">Deep Rock Galactic</option>
+		<option value="218620">PAYDAY 2</option>
+		<option value="574090">MOTHERGUNSHIP</option>
+	</optgroup>
+</nmd-select></script></code></pre>
+		<div class="card card-body">
+			<div>
+				<nmd-select>
+					<optgroup label="Local COOP">
+						<option value="408410">X-Morph: Defense</option>
+						<option value="448510">Overcooked</option>
+					</optgroup>
+					<optgroup label="Network COOP">
+						<option value="548430">Deep Rock Galactic</option>
+						<option value="218620">PAYDAY 2</option>
+						<option value="574090">MOTHERGUNSHIP</option>
+					</optgroup>
+				</nmd-select>
+			</div>
+		</div>
+
+		<pre class="join-with-next"><code class="language-markup"><script type="prism-html-markup"><nmd-select input-class="form-control" select-class="form-control">
+	<option value="php">PHP</option>
+	<option value="i">INTERCAL</option>
+	<option value="js">JavaScript</option>
+	<option value="ws">Whitespace</option>
+	<option value="py">Python</option>
+	<option value="cbl">COBOL</option>
+	<option value="pptx">PowerPoint</option>
+</nmd-select></script></code></pre>
+		<div class="card card-body">
+			<div>
+				<nmd-select input-class="form-control" select-class="form-control">
+					<option value="php">PHP</option>
+					<option value="i">INTERCAL</option>
+					<option value="js">JavaScript</option>
+					<option value="ws">Whitespace</option>
+					<option value="py">Python</option>
+					<option value="cbl">COBOL</option>
+					<option value="pptx">PowerPoint</option>
+				</nmd-select>
+			</div>
+		</div>
+
+
+		<h2>
+			<a id="nmd-collapse"></a>
+			nmd-collapse
+			<a href="https://www.npmjs.com/package/nmd-collapse" target="_blank">
+				<img src="https://img.shields.io/npm/v/nmd-collapse?style=for-the-badge" alt="npm">
+			</a>
+		</h2>
+
+		<p>Hide and reveal your content easily and with style with this simple web component.</p>
+
+		<pre><code class="language-markup"><script type="prism-html-markup"><script src="https://unpkg.com/nmd-collapse"></script></code></pre>
+
+		<pre class="join-with-next"><code class="language-markup"><script type="prism-html-markup"><nmd-collapse>
+	<div class="card card-body bg-info">
+		mole 1<br>
+		with default animation and duration (0.5s)
+	</div>
+</nmd-collapse>
+<button type="button" class="btn btn-info mt-1" onclick="this.previousElementSibling.toggle()">Whack-A-Mole 1</button></script></code></pre>
+		<div class="card card-body">
+			<div>
+				<nmd-collapse>
+					<div class="card card-body bg-info">
+						mole 1<br>
+						with default animation and duration (0.5s)
+					</div>
+				</nmd-collapse>
+				<button type="button" class="btn btn-info mt-2" onclick="this.previousElementSibling.toggle()">Whack-A-Mole 1</button>
+			</div>
+		</div>
+
+		<pre class="join-with-next"><code class="language-markup"><script type="prism-html-markup"><nmd-collapse animation="simple" duration="1.5s">
+	<div class="card card-body bg-success text-white">
+		mole 2<br>
+		with custom duration and same animation as before just set explicitly
+	</div>
+</nmd-collapse>
+<button type="button" class="btn btn-success mt-2" onclick="this.previousElementSibling.toggle()">Whack-A-Mole 2</button></script></code></pre>
+		<div class="card card-body">
+			<div>
+				<nmd-collapse animation="simple" duration="1.5s">
+					<div class="card card-body bg-success text-white">
+						mole 2<br>
+						with custom duration and same animation as before just set explicitly
+					</div>
+				</nmd-collapse>
+				<button type="button" class="btn btn-success mt-2" onclick="this.previousElementSibling.toggle()">Whack-A-Mole 2</button>
+			</div>
+		</div>
+
+		<pre class="join-with-next"><code class="language-markup"><script type="prism-html-markup"><nmd-collapse animation="squish">
+	<div class="card card-body bg-warning">
+		mole 3<br>
+		poor mole...
+	</div>
+</nmd-collapse>
+<button type="button" class="btn btn-warning mt-2" onclick="this.previousElementSibling.toggle()">Whack-A-Mole 3</button></script></code></pre>
+		<div class="card card-body">
+			<div>
+				<nmd-collapse animation="squish">
+					<div class="card card-body bg-warning">
+						mole 3<br>
+						poor mole...
+					</div>
+				</nmd-collapse>
+				<button type="button" class="btn btn-warning mt-2" onclick="this.previousElementSibling.toggle()">Whack-A-Mole 3</button>
+			</div>
+		</div>
+
+		<pre class="join-with-next"><code class="language-markup"><script type="prism-html-markup"><nmd-collapse animation="flip" hidden>
+	<div class="card card-body bg-danger text-white d-block">
+		mole 4 begins hidden<br>
+		yeet him away<br>
+		<button type="button" class="btn btn-dark my-2" onclick="this.parentElement.parentElement.collapse()">Whack-A-Mole 4</button>
+		<nmd-collapse animation="shrink">
+			<div class="card card-body bg-light text-dark">
+				nested mole
+			</div>
+		</nmd-collapse>
+		<button type="button" class="btn btn-light mt-2" onclick="this.previousElementSibling.toggle()">Whack-A-Nested-Mole</button>
+	</div>
+</nmd-collapse>
+<button type="button" class="btn btn-danger mt-2" onclick="this.previousElementSibling.expand()">Unwhack-A-Mole 4</button></script></code></pre>
+		<div class="card card-body">
+			<div>
+				<nmd-collapse animation="flip" hidden>
+					<div class="card card-body bg-danger text-white d-block">
+						mole 4 begins hidden<br>
+						yeet him away<br>
+						<button type="button" class="btn btn-dark my-2" onclick="this.parentElement.parentElement.collapse()">Whack-A-Mole 4</button>
+						<nmd-collapse animation="shrink">
+							<div class="card card-body bg-light text-dark">
+								nested mole
+							</div>
+						</nmd-collapse>
+						<button type="button" class="btn btn-light mt-2" onclick="this.previousElementSibling.toggle()">Whack-A-Nested-Mole</button>
+					</div>
+				</nmd-collapse>
+				<button type="button" class="btn btn-danger mt-2" onclick="this.previousElementSibling.expand()">Unwhack-A-Mole 4</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
